@@ -5,26 +5,26 @@ require_relative 'exercise_1_solutions'
 class UniqueStringTest < Minitest::Test
   def test_unique_is_true_if_all_characters_are_unique
     my_string = "abcdefg"
-    assert my_string.unique
+    assert my_string.unique?
   end
 
   def test_unique_is_false_if_there_are_repeated_characters
     my_string = "Hello, world!"
-    refute my_string.unique
+    refute my_string.unique?
   end
 end
 
 class ReverseStringTest < Minitest::Test
   def test_rev_reverses_the_string
     my_string = "abcdefg"
-    assert_equal "gfedcba", my_string.rev
+    assert_equal "gfedcba", my_string.flip
   end
 end
 
 class RemoveDupesFromStringTest < Minitest::Test
   def test_remove_dupes_uniquifies_string
     my_string = "Hello, world!"
-    assert_equal "Helo, wrd!", my_string.remove_dupes
+    assert_equal "Helo, wrd!", my_string.uniq
   end
 end
 
@@ -36,11 +36,11 @@ class AnagramTest < Minitest::Test
   end
 end
 
-class UrlifySpacesTest < Minitest::Test
-  def test_urlify_changes_spaces_to_percent20s
+class EncodeSpacesTest < Minitest::Test
+  def test_encode_spaces_changes_spaces_to_percent20s
     my_string = "www.my_website.com/blog posts"
     expected = "www.my_website.com/blog%20posts"
-    result = my_string.urlify
+    result = my_string.encode_spaces
     assert_equal expected, result
   end
 end
@@ -50,8 +50,8 @@ class SubstringTest < Minitest::Test
     my_string = "abracadabra"
     substring = "abra"
     non_substring = "arby"
-    assert substring.is_substring?(my_string)
-    refute non_substring.is_substring?(my_string)
+    assert substring.substring?(my_string)
+    refute non_substring.substring?(my_string)
   end
 
   def test_rotations

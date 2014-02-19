@@ -1,10 +1,10 @@
 class String
 
-  def unique
-    remove_dupes == self
+  def unique?
+    uniq == self
   end
 
-  def remove_dupes
+  def uniq
     collector = ""
     self.each do |c|
       collector += c unless collector.index(c)
@@ -12,7 +12,7 @@ class String
     collector
   end
 
-  def rev
+  def flip
     collector = ""
     i = self.length
     while i >= 0
@@ -24,10 +24,10 @@ class String
 
   def anagram?(other)
     return false if self.length != other.length
-    is_substring?(other)
+    substring?(other)
   end
 
-  def urlify
+  def encode_spaces
     collector = self
 
     collector.each_with_index do |c, i|
@@ -41,7 +41,7 @@ class String
     collector
   end
 
-  def is_substring?(other)
+  def substring?(other)
     other.each do |c|
       self.each do |d|
         return false if other.index(d).nil?
